@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+</head>
+<body>
+<h1>To-do List</h1>
+<table border="solid">
+    <tr>
+        <th>Title</th>
+        <th>Completed</th>
+        <!-- treba dodati jos dva botuna -->
+    </tr>
+    <tr th:each="iterator : ${todolist}">
+        <td th:text="${iterator.title}"></td>
+        <td th:text="${iterator.completed}"></td>
+        <!-- treba dodati jos dva botuna -->
+    </tr>
+</table>
+<br><br><br>
+<h3>Add a new task:</h3>
+<div>
+    <form method="post" th:object="${newTodo}" th:action="@{/}">
+        <input type="text" placeholder="Add a task" th:field="*{title}">
+        <input type="submit" value="SUBMIT">
+    </form>
+</div>
+</body>
+</html>
