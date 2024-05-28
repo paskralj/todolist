@@ -10,12 +10,22 @@
     <tr>
         <th>Title</th>
         <th>Completed</th>
-        <!-- treba dodati jos dva botuna -->
+        <th>Done</th>
+        <th>Delete</th>
     </tr>
     <tr th:each="iterator : ${todolist}">
         <td th:text="${iterator.title}"></td>
         <td th:text="${iterator.completed}"></td>
-        <!-- treba dodati jos dva botuna -->
+        <td>
+            <form method="post" th:action="@{/done/{id}(id=${iterator.id})}">
+                <input type="submit" value="Done">
+            </form>
+        </td>
+        <td>
+            <form method="post" th:action="@{/delete/{id}(id=${iterator.id})}">
+                <input type="submit" value="Delete">
+            </form>
+        </td>
     </tr>
 </table>
 <br><br><br>

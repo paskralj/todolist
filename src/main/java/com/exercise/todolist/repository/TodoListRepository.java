@@ -1,22 +1,12 @@
 package com.exercise.todolist.repository;
 
 import com.exercise.todolist.controller.TodoList;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.UUID;
 
 @Repository
-public class TodoListRepository {
+public interface TodoListRepository extends JpaRepository<TodoList, UUID> {
 
-    private List<TodoList> todoLists = new ArrayList<>(Arrays.asList(new TodoList("milka"), new TodoList("sladoled")));
-
-    public List<TodoList> getTodoLists(){
-        return todoLists;
-    }
-
-    public void addTodoList(TodoList todoList){
-        todoLists.add(todoList);
-    }
 }

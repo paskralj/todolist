@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TodoListService {
@@ -14,11 +15,32 @@ public class TodoListService {
     TodoListRepository todoListRepository;
 
     public List<TodoList> getTodoLists() {
-        return todoListRepository.getTodoLists();
+        return todoListRepository.findAll();
     }
 
-    public void addTodoList(TodoList todoList){
-        todoListRepository.addTodoList(todoList);
+    public void addTodoList(TodoList todoList) {
+        todoListRepository.save(todoList);
+    }
+
+    public void markTaskAsDone(UUID id) {
+        if (todoListRepository.findById(id).isPresent()) {
+            TodoList foundTodoList = todoListRepository.findById(id).get();
+            foundTodoList.setCompleted(true);
+            todoListRepository.save(foundTodoList);
+        }
+        else {
+
+        }
+    }
+
+    public  void deleteTask(UUID id){
+        if (todoListRepository.findById(id).isPresent()){
+            TodoList task = todoListRepository.findById(id).get();
+            todoListRepository.delete(task);
+        }
+        else {
+
+        }
     }
 
 }

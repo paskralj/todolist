@@ -1,11 +1,16 @@
 package com.exercise.todolist.controller;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.UUID;
 
+@Entity
+@Table(name = "listtodo")
 public class TodoList {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     @NotBlank(message = "Cannot be blank")
     private String title;
