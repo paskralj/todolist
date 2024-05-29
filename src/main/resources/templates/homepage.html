@@ -32,6 +32,7 @@
 <h3>Add a new task:</h3>
 <div>
     <form method="post" th:object="${newTodo}" th:action="@{/}">
+        <p style="color:red" th:errors="*{title}"></p>
         <input type="text" placeholder="Add a task" th:field="*{title}">
         <input type="submit" value="SUBMIT">
     </form>

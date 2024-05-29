@@ -17,13 +17,11 @@ public class TodoList {
     private boolean completed;
 
     public TodoList() {
-        this.completed = false;
     }
 
     public TodoList(String title) {
         this.title = title;
         this.completed = false;
-        this.id = UUID.randomUUID();
     }
 
     public UUID getId() {
