@@ -1,6 +1,7 @@
 package com.exercise.todolist.service;
 
 import com.exercise.todolist.controller.TodoList;
+import com.exercise.todolist.exception.TodoListNotFoundException;
 import com.exercise.todolist.repository.TodoListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,19 +28,17 @@ public class TodoListService {
             TodoList foundTodoList = todoListRepository.findById(id).get();
             foundTodoList.setCompleted(true);
             todoListRepository.save(foundTodoList);
-        }
-        else {
-
+        } else {
+            throw new TodoListNotFoundException("Todo list with id " + id + " not found");
         }
     }
 
-    public  void deleteTask(UUID id){
-        if (todoListRepository.findById(id).isPresent()){
+    public void deleteTask(UUID id) {
+        if (todoListRepository.findById(id).isPresent()) {
             TodoList task = todoListRepository.findById(id).get();
             todoListRepository.delete(task);
-        }
-        else {
-
+        } else {
+            throw new TodoListNotFoundException("Todo list with id " + id + " not found");
         }
     }
 
