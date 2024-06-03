@@ -38,6 +38,7 @@ public class HomeController {
 
     /**
      * Handle the addition of new Todo tasks
+     *
      * @param newTodo new Todo item to be added
      * @param result BindingResult for validation errors
      * @param model Model object to add attributes for rendering the view
@@ -67,6 +68,7 @@ public class HomeController {
     }
 
     /**
+     * Handle the deletion of a task
      *
      * @param id The unique identifier of the task to delete
      * @return Redirect to the homepage after deleting the task
