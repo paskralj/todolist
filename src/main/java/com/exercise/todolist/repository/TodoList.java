@@ -1,4 +1,4 @@
-package com.exercise.todolist.controller;
+package com.exercise.todolist.repository;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

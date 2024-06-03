@@ -1,5 +1,6 @@
 package com.exercise.todolist.controller;
 
+import com.exercise.todolist.repository.TodoList;
 import com.exercise.todolist.service.TodoListService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.UUID;
 
+/**
+ * Controller for handling requests related to the home page and todo list operations
+ */
 @Controller
 public class HomeController {
 
@@ -20,9 +24,10 @@ public class HomeController {
     TodoListService todoListService;
 
     /**
-     * Handle the root (/) and return a home page
+     * Handle the root (/) and return a home page.
      *
-     * @return homepage
+     * @param model Model object to add attributes for rendering the view
+     * @return The name of the homepage view template
      */
     @GetMapping("/")
     public String homePage(Model model) {
@@ -31,6 +36,13 @@ public class HomeController {
         return "homepage";
     }
 
+    /**
+     * Handle the addition of new Todo tasks
+     * @param newTodo new Todo item to be added
+     * @param result BindingResult for validation errors
+     * @param model Model object to add attributes for rendering the view
+     * @return Redirect to the homepage if successful, otherwise stay on the same page
+     */
     @PostMapping("/")
     public String addTodo(@Valid @ModelAttribute("newTodo") TodoList newTodo, BindingResult result, Model model) {
 
@@ -42,12 +54,23 @@ public class HomeController {
         return "redirect:/";
     }
 
+    /**
+     * Handle the completion of a task
+     *
+     * @param id The unique identifier of the task to mark as done
+     * @return Redirect to the homepage after marking the task as done
+     */
     @PostMapping("/done/{id}")
     public String taskCompleted(@PathVariable UUID id) {
         todoListService.markTaskAsDone(id);
         return "redirect:/";
     }
 
+    /**
+     *
+     * @param id The unique identifier of the task to delete
+     * @return Redirect to the homepage after deleting the task
+     */
     @PostMapping("/delete/{id}")
     public String deleteTask(@PathVariable UUID id) {
         todoListService.deleteTask(id);
