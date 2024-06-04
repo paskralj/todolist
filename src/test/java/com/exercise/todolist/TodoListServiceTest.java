@@ -16,9 +16,12 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * A class intended for testing service methods
+ */
 @SpringBootTest
 @Transactional
-public class TodoListServiceTest {
+class TodoListServiceTest {
 
     @Autowired
     private TodoListRepository todoListRepository;
@@ -32,10 +35,10 @@ public class TodoListServiceTest {
     }
 
     /**
-     *
+     * Tests the retrieval of TodoLists.
      */
     @Test
-    public void getTodoListsTest() {
+    void getTodoListsTest() {
         TodoList todo = new TodoList("mrkva");
         todoListService.addTodoList(todo);
 
@@ -46,10 +49,10 @@ public class TodoListServiceTest {
     }
 
     /**
-     *
+     * Tests marking a task as done.
      */
     @Test
-    public void markTaskAsDoneTest() {
+    void markTaskAsDoneTest() {
         TodoList todo = new TodoList("mrkva");
         todoListService.addTodoList(todo);
 
@@ -60,10 +63,10 @@ public class TodoListServiceTest {
     }
 
     /**
-     *
+     * Tests handling of task not found when marking it as done.
      */
     @Test
-    public void testMarkTaskAsDoneNotFound() {
+    void testMarkTaskAsDoneNotFound() {
         UUID randomId = UUID.randomUUID();
 
         Executable executable = new Executable() {
@@ -82,10 +85,10 @@ public class TodoListServiceTest {
     }
 
     /**
-     *
+     * Tests deleting a task.
      */
     @Test
-    public void deleteTaskTest(){
+    void deleteTaskTest(){
         TodoList todo = new TodoList("mrkva");
         todoListService.addTodoList(todo);
 
@@ -96,10 +99,10 @@ public class TodoListServiceTest {
     }
 
     /**
-     *
+     * Tests handling of task not found when deleting it.
      */
     @Test
-    public void testDeleteTaskNotFound(){
+    void testDeleteTaskNotFound(){
         UUID randomId = UUID.randomUUID();
 
         Executable executable = new Executable() {
