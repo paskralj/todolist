@@ -21,7 +21,7 @@ import java.util.UUID;
 public class HomeController {
 
     @Autowired
-    TodoListService todoListService;
+    private TodoListService todoListService;
 
     /**
      * Handle the root (/) and return a home page.

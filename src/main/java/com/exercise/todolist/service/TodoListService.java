@@ -16,7 +16,7 @@ import java.util.UUID;
 public class TodoListService {
 
     @Autowired
-    TodoListRepository todoListRepository;
+    private TodoListRepository todoListRepository;
 
     /**
      * Retrieves all TodoList entities
